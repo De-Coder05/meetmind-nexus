@@ -77,8 +77,16 @@ const RECENT = [
 ];
 
 export function CommandCenter({ onLaunch }: Props) {
+  const [mode, setMode] = useState<"upload" | "url">("url");
   const [isProcessing, setIsProcessing] = useState(false);
   const [file, setFile] = useState<File | null>(null);
+  const [url, setUrl] = useState("");
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    const v = /^(https?:\/\/)(www\.)?(youtube\.com|youtu\.be|vimeo\.com|.+\.(mp4|mov|m4a|mp3))/i.test(url.trim());
+    setIsValid(v);
+  }, [url]);
 
   const launch = async (type: "meeting" | "lecture") => {
     if (isProcessing) return;
