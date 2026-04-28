@@ -66,7 +66,9 @@ export function ActivePipeline({ title, meetingId, onComplete }: Props) {
 
       {/* Stage tracker */}
       <div className="relative card-surface rounded-2xl p-6 md:p-8 overflow-hidden">
+        <div className="neural-pulse"><span /></div>
         <div className="absolute inset-0 bg-gradient-primary opacity-[0.04]" />
+        <div className="absolute inset-0 dot-grid opacity-20" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
 
         <div className="relative grid gap-3">

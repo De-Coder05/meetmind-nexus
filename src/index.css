@@ -214,3 +214,63 @@
   0%, 100% { transform: scaleY(0.35); }
   50%      { transform: scaleY(1); }
 }
+
+/* Neural pulse — slow drifting radial glows for the Active Pipeline */
+@keyframes neural-drift-a {
+  0%   { transform: translate3d(-10%, -10%, 0) scale(1); }
+  50%  { transform: translate3d(15%, 20%, 0) scale(1.15); }
+  100% { transform: translate3d(-10%, -10%, 0) scale(1); }
+}
+@keyframes neural-drift-b {
+  0%   { transform: translate3d(20%, 10%, 0) scale(1.1); }
+  50%  { transform: translate3d(-15%, -10%, 0) scale(0.95); }
+  100% { transform: translate3d(20%, 10%, 0) scale(1.1); }
+}
+@keyframes neural-drift-c {
+  0%   { transform: translate3d(-5%, 25%, 0) scale(0.9); }
+  50%  { transform: translate3d(10%, -20%, 0) scale(1.2); }
+  100% { transform: translate3d(-5%, 25%, 0) scale(0.9); }
+}
+
+.neural-pulse {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.neural-pulse::before,
+.neural-pulse::after,
+.neural-pulse > span {
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: 0.55;
+}
+.neural-pulse::before {
+  background: radial-gradient(circle, hsl(239 84% 67% / 0.7), transparent 70%);
+  top: -10%; left: -10%;
+  animation: neural-drift-a 9s ease-in-out infinite;
+}
+.neural-pulse::after {
+  background: radial-gradient(circle, hsl(280 85% 70% / 0.6), transparent 70%);
+  bottom: -15%; right: -10%;
+  animation: neural-drift-b 11s ease-in-out infinite;
+}
+.neural-pulse > span {
+  background: radial-gradient(circle, hsl(262 83% 68% / 0.5), transparent 70%);
+  top: 30%; left: 40%;
+  animation: neural-drift-c 13s ease-in-out infinite;
+}
+
+/* Beam animation — for push-to-integration micro-animation */
+@keyframes beam-out {
+  0%   { transform: translateX(0) scale(1); opacity: 1; }
+  60%  { transform: translateX(120px) scale(0.6); opacity: 0.6; }
+  100% { transform: translateX(220px) scale(0.1); opacity: 0; }
+}
+.beam-particle {
+  animation: beam-out 1.1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
