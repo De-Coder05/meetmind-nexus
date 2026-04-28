@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.next
+.vercel
+temp
+.env
+.env.local
+.env.*.local
